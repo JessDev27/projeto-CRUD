@@ -1,0 +1,25 @@
+{
+  "Postagens": [
+    {
+      "nome": "Jessica Ellen",
+      "description": "1223456",
+      "genero": "Feminino",
+      "dataNascimento": "00/00/00",
+      "id": "1034"
+    },
+    {
+      "nome": "Carlos Atualizado",
+      "description": "carlos22@gmail.com",
+      "genero": "Masculino",
+      "dataNascimento": "",
+      "id": "e15d"
+    },
+    {
+      "id": "1b9d",
+      "nome": "André",
+      "description": "andre@gmail.com",
+      "genero": "Masculino",
+      "dataNascimento": ""
+    }
+  ]
+}

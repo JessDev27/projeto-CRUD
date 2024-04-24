@@ -1,0 +1,49 @@
+div#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+div span {
+  color: red;
+  font-weight: bold;
+}
+
+.boxGenero {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.boxGenero select {
+  background-color: #80808024;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.boxCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#checkbox {
+  width: 10px;
+  height: 10px;
+}
+
+.boxCheckbox label {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 5px;
+}
