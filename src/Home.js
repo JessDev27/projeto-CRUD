@@ -8,12 +8,11 @@ import "./home.css";
 
 function Home({ lista, setLista }) {
   const [ordem, setOrdem] = useState({ nome: "", direcao: "" });
-
   const [filtro, setFiltro] = useState("");
-
   const [paginaAtual, setPaginaAtual] = useState(0);
-
   const [itensPorPagina, setItensPorPagina] = useState(5);
+  const [modalConfirma, setModalConfirma] = useState(false);
+  const [itemParaExcluir, setItemParaExcluir] = useState(null);
 
   const navigate = useNavigate();
 
@@ -58,6 +57,7 @@ function Home({ lista, setLista }) {
         method: "DELETE",
       });
       setLista(lista.filter((item) => item.id !== id));
+      setModalConfirma(false);
     } catch (error) {
       console.log("Erro na exclusão!");
     }
@@ -103,10 +103,17 @@ function Home({ lista, setLista }) {
                 <td data-label="Nome">{item.nome}</td>
                 <td data-label="Email">{item.description}</td>
                 <td data-label="Gênero">{item.genero}</td>
-                <td>{item.data}</td>
+                <td data-label="dataNascimento">{item.dataNascimento}</td>
                 <td>
                   <div className="btn-edit">
-                    <button onClick={() => excluirItem(item.id)}>✖️</button>
+                    <button
+                      onClick={() => {
+                        setModalConfirma(true);
+                        setItemParaExcluir(item);
+                      }}
+                    >
+                      ✖️
+                    </button>
                     <Link to={`/PaginaEdit/${item.id}`}>
                       <button> ✎ </button>
                     </Link>
@@ -130,6 +137,29 @@ function Home({ lista, setLista }) {
             {">>"}
           </button>
         </div>
+        {modalConfirma && (
+          <div className="modal">
+            <div className="boxModal">
+              <p>Deseja realmente excluir ?</p>
+              <div className="btnModal">
+                <button
+                  onClick={() => {
+                    excluirItem(itemParaExcluir.id);
+                  }}
+                >
+                  Confirmar
+                </button>
+                <button
+                  onClick={() => {
+                    setModalConfirma(false);
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div>

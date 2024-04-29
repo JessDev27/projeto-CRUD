@@ -1,5 +1,39 @@
+.celulaNome {
+  display: flex;
+  justify-content: space-evenly;
+}
 
-.celulaNome{
-    display: flex;
-    justify-content: space-evenly;
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: rgb(206, 206, 206);
+}
+
+.boxModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btnModal {
+  display: flex;
+  gap: 15px;
+}
+
+.btnModal button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
 }

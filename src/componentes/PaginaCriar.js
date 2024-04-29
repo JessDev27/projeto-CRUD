@@ -110,7 +110,7 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
         }}
       ></input>
       {validacao.description === false && <span>{mensagem.description}</span>}
-
+{/* 
       <label htmlFor="date">Data de nascimento</label>
       <input
         type="date"
@@ -124,7 +124,7 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
           border: validacao.dataNascimento ? " 1px solid green" : " 1px solid red",
         }}
       ></input>
-      {validacao.dataNascimento === false && <span>{mensagem.dataNascimento}</span>}
+      {validacao.dataNascimento === false && <span>{mensagem.dataNascimento}</span>} */}
 
       <div className="boxGenero">
         <label htmlFor="genero">Gênero</label>
