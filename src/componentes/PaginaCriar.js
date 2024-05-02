@@ -1,8 +1,10 @@
 import React from "react";
 import "./paginaCriar.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
+  const navigate = useNavigate();
   const [validacao, setValidacao] = useState({
     nome: true,
     description: true,
@@ -18,52 +20,24 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
   });
 
   async function validar() {
-    let itemValido = {
-      nome: true,
-      description: true,
-      genero: true,
-      dataNascimento: true,
-    };
-    let mensagens = {
-      nome: "",
-      description: "",
-      genero: "",
-      dataNascimento: "",
+    const itemValido = {
+      nome: novoItem.nome !== "",
+      description: novoItem.description !== "",
+      genero: novoItem.genero !== "",
+      dataNascimento: novoItem.dataNascimento !== "",
     };
 
-    if (novoItem.nome === "") {
-      itemValido.nome = false;
-      mensagens.nome = "O nome é obrigatório.";
-    }
+    const mensagens = {
+      nome: itemValido.nome ? "" : "O nome é obrigatório.",
+      description: itemValido.description ? "" : "O email é obrigatório.",
+      genero: itemValido.genero ? "" : "Selecione uma opção.",
+      dataNascimento: itemValido.dataNascimento
+        ? ""
+        : "informe sua data de nascimento.",
+    };
 
-    if (novoItem.description === "") {
-      itemValido.description = false;
-      mensagens.description = "A descrição é obrigatória.";
-    }
-
-    if (novoItem.genero === "") {
-      itemValido.genero = false;
-      mensagens.genero = "Selecione uma opção.";
-    }
-
-    if (novoItem.dataNascimento === "") {
-      itemValido.dataNascimento = false;
-      mensagens.dataNascimento = "Informe sua data de nascimento.";
-    }
-
-    setValidacao({
-      nome: itemValido.nome,
-      description: itemValido.description,
-      genero: itemValido.genero,
-      dataNascimento: itemValido.dataNascimento,
-    });
-
-    setMensagem({
-      nome: mensagens.nome,
-      description: mensagens.description,
-      genero: mensagens.genero,
-      dataNascimento: mensagens.dataNascimento,
-    });
+    setValidacao(itemValido);
+    setMensagem(mensagens);
   }
 
   function onclick() {
@@ -110,7 +84,7 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
         }}
       ></input>
       {validacao.description === false && <span>{mensagem.description}</span>}
-{/* 
+      {/* 
       <label htmlFor="date">Data de nascimento</label>
       <input
         type="date"
@@ -153,6 +127,9 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
       <div className="btn">
         <button className="btn-add" onClick={onclick}>
           Adicionar
+        </button>
+        <button className="btn-add" onClick={() => navigate("/")}>
+          Cancelar
         </button>
       </div>
     </div>

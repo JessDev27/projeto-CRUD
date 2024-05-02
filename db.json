@@ -1,20 +1,6 @@
 {
   "Postagens": [
     {
-      "nome": "Carlos Atualizado",
-      "description": "carlos22@gmail.com",
-      "genero": "Masculino",
-      "dataNascimento": "",
-      "id": "e15d"
-    },
-    {
-      "id": "c74b",
-      "nome": "JESSICA",
-      "description": "jessicaellen.nunes@gmail.com",
-      "genero": "Feminino",
-      "dataNascimento": ""
-    },
-    {
       "id": "4c23",
       "nome": "teste",
       "description": "@gmail.com",
@@ -22,10 +8,10 @@
       "dataNascimento": ""
     },
     {
-      "id": "d2ee",
-      "nome": "testex1",
-      "description": "00@gmail.com",
-      "genero": "Masculino",
+      "id": "e005",
+      "nome": "JESSICA",
+      "description": "jessicaellen.nunes@gmail.com",
+      "genero": "Feminino",
       "dataNascimento": ""
     }
   ]

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "./paginaEdit.css"
 
 function PaginaEdit({ lista, setLista }) {
   const [validacao, setValidacao] = useState({
     nome: true,
     description: true,
   });
-  const [novoItem, setNovoItem] = useState({ nome: "", description: "" });
+  const [novoItem, setNovoItem] = useState({
+    nome: "",
+    description: "",
+    genero: "",
+  });
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -23,25 +28,6 @@ function PaginaEdit({ lista, setLista }) {
 
   async function atualizarTabela() {
     try {
-      // async function validar() {
-      //   let itemValido = {
-      //     nome: true,
-      //     description: true,
-      //   };
-      //   if (novoItem.nome === "") {
-      //     itemValido.nome = false;
-      //   }
-
-      //   if (novoItem.description === "") {
-      //     itemValido.description = false;
-      //   }
-
-      //   setValidacao({
-      //     nome: itemValido.nome,
-      //     description: itemValido.description,
-      //   });
-      // }
-
       const resp = await fetch(`http://localhost:3001/Postagens/${id}`, {
         method: "PUT",
         headers: {
@@ -52,7 +38,7 @@ function PaginaEdit({ lista, setLista }) {
       const data = await resp.json();
 
       setLista(lista.map((item) => (item.id === id ? data : item)));
-      setNovoItem({ nome: "", description: "" });
+      setNovoItem({ nome: "", description: "", genero: "" });
       navigate("/");
     } catch (error) {
       console.log("Erro na atualização!");
@@ -66,6 +52,7 @@ function PaginaEdit({ lista, setLista }) {
           <tr>
             <th>Nome</th>
             <th>Descrição</th>
+            <th>Gênero</th>
           </tr>
         </thead>
         <tbody>
@@ -105,10 +92,32 @@ function PaginaEdit({ lista, setLista }) {
                 }}
               ></input>
             </td>
+            <td>
+              <input
+                className="inputEdit"
+                type="text"
+                placeholder="Digite aqui"
+                value={novoItem.genero}
+                onChange={(e) => {
+                  setNovoItem({
+                    ...novoItem,
+                    genero: e.target.value,
+                  });
+                }}
+                style={{
+                  border: validacao.genero
+                    ? " 1px solid green"
+                    : " 1px solid red",
+                }}
+              ></input>
+            </td>
           </tr>
         </tbody>
       </table>
-      <button onClick={atualizarTabela}>Enviar</button>
+      <div className="btnEdit">
+        <button onClick={atualizarTabela}>Enviar</button>
+        <button onClick={() => navigate("/")} >Cancelar</button>
+      </div>
     </div>
   );
 }
