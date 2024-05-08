@@ -22,18 +22,17 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
   async function validar() {
     const itemValido = {
       nome: novoItem.nome !== "",
-      description: novoItem.description !== "",
+      description: novoItem.description.includes("@"),
       genero: novoItem.genero !== "",
-      dataNascimento: novoItem.dataNascimento !== "",
+      dataNascimento: novoItem.dataNascimento < new Date().toISOString().slice(0, 10) ,
     };
 
     const mensagens = {
       nome: itemValido.nome ? "" : "O nome é obrigatório.",
-      description: itemValido.description ? "" : "O email é obrigatório.",
+      description: itemValido.description ? "" : "O email está errado.",
       genero: itemValido.genero ? "" : "Selecione uma opção.",
       dataNascimento: itemValido.dataNascimento
-        ? ""
-        : "informe sua data de nascimento.",
+        ? "" : "Informe uma data válida.",
     };
 
     setValidacao(itemValido);
@@ -45,7 +44,7 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
       validacao.nome === false ||
       validacao.description === false ||
       validacao.genero === false ||
-      validacao.dataNascimento
+      validacao.dataNascimento === false
     ) {
       return;
     }
@@ -84,21 +83,25 @@ function PaginaCriar({ novoItem, setNovoItem, adicionarNovoItem }) {
         }}
       ></input>
       {validacao.description === false && <span>{mensagem.description}</span>}
-      {/* 
+
       <label htmlFor="date">Data de nascimento</label>
       <input
         type="date"
         id="date"
         className="inpData"
         value={novoItem.dataNascimento}
-        onChange={(e) => 
+        onChange={(e) =>
           setNovoItem({ ...novoItem, dataNascimento: e.target.value })
         }
         style={{
-          border: validacao.dataNascimento ? " 1px solid green" : " 1px solid red",
+          border: validacao.dataNascimento
+            ? " 1px solid green"
+            : " 1px solid red",
         }}
       ></input>
-      {validacao.dataNascimento === false && <span>{mensagem.dataNascimento}</span>} */}
+      {validacao.dataNascimento === false && (
+        <span>{mensagem.dataNascimento}</span>
+      )}
 
       <div className="boxGenero">
         <label htmlFor="genero">Gênero</label>
